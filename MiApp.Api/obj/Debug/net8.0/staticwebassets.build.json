@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "olEZxcID9dD+FnsJ3LHIwDkgCYEgbLhlAL89Wjmq2qA=",
+  "Source": "MiApp.Api",
+  "BasePath": "_content/MiApp.Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
