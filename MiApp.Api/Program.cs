@@ -13,6 +13,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 // 2. REGISTRAR LOS REPOSITORIOS Y UNIT OF WORK (CICLO DE VIDA SCOPED)
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 // Soporte para controladores clásicos

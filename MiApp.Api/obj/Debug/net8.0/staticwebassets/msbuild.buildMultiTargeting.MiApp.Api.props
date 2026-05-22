@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\build\MiApp.Api.props" />
-</Project>

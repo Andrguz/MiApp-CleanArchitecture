@@ -9,8 +9,9 @@ public class ApplicationDbContext : DbContext
     {
     }
 
-    // Definimos la tabla de Productos
+    // Definimos las tablas del sistema
     public DbSet<Product> Products => Set<Product>();
+    public DbSet<User> Users => Set<User>(); // <--- AGREGADO: Tabla de Usuarios
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -37,6 +38,30 @@ public class ApplicationDbContext : DbContext
                   .IsRequired();
 
             entity.Property(p => p.Stock)
+                  .IsRequired();
+        });
+
+        // -------------------------------------------------------------
+        // AGREGADO: Configuramos la entidad User usando Fluent API
+        // -------------------------------------------------------------
+        modelBuilder.Entity<User>(entity =>
+        {
+            entity.HasKey(u => u.Id);
+
+            // Al igual que con los productos, el ID se maneja desde el Dominio
+            entity.Property(u => u.Id)
+                  .ValueGeneratedNever();
+
+            entity.Property(u => u.FullName)
+                  .HasMaxLength(150)
+                  .IsRequired();
+
+            entity.Property(u => u.Email)
+                  .HasMaxLength(150)
+                  .IsRequired();
+
+            entity.Property(u => u.PasswordHash)
+                  .HasMaxLength(255)
                   .IsRequired();
         });
     }
