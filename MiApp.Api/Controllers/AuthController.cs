@@ -1,6 +1,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using MiApp.Application.Auth;
+using MiApp.Application.Users.Commands; // <--- AGREGADO: Para que reconozca el RegisterUserCommand
 
 namespace MiApp.Api.Controllers;
 
@@ -30,6 +31,24 @@ public class AuthController : ControllerBase
         }
         catch (Exception ex)
         {
+            return BadRequest(new { message = ex.Message });
+        }
+    }
+
+    // -------------------------------------------------------------
+    // NUEVO ENDPOINT: POST /api/Auth/register
+    // -------------------------------------------------------------
+    [HttpPost("register")]
+    public async Task<IActionResult> Register([FromBody] RegisterUserCommand command)
+    {
+        try
+        {
+            var userId = await _mediator.Send(command);
+            return Ok(new { message = "Usuario registrado con éxito.", userId = userId });
+        }
+        catch (Exception ex)
+        {
+            // Si el email ya existe o falla la validación, devuelve un 400 Bad Request
             return BadRequest(new { message = ex.Message });
         }
     }

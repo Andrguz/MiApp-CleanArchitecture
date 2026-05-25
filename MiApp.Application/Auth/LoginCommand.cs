@@ -31,6 +31,6 @@ public class LoginCommandHandler : IRequestHandler<LoginCommand, string>
         }
 
         // 3. Respuesta de éxito provisoria
-        return $"¡Login exitoso para {user.FullName}! (Acá va a ir el token JWT)";
+        return $"¡Login exitoso para {user.FullName}";
     }
 }
